@@ -4,13 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#80004B">
-
   <title>Transasia Valuation</title>
-
-  <link rel="manifest" href="./manifest.json">
-  <link rel="icon" href="./transasia-icon-512.png">
-
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
   <style>
     body {
       margin: 0;
@@ -22,58 +17,71 @@
       font-family: Arial, sans-serif;
       text-align: center;
     }
-
-    .container {
-      padding: 30px;
-    }
-
+    .container { padding: 30px; }
     .logo {
       width: 160px;
       height: 160px;
       border-radius: 30px;
     }
-
-    h2 {
-      color: #80004B;
+    h2 { color: #80004B; }
+    #googleSignIn {
+      display: flex;
+      justify-content: center;
+      margin-top: 25px;
     }
-
-    a {
-      display: inline-block;
-      background: #80004B;
-      color: white;
-      padding: 16px 30px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
+    #message {
+      color: #555;
+      font-size: 13px;
+      margin-top: 18px;
     }
   </style>
 </head>
-
 <body>
   <div class="container">
-
     <img class="logo"
       src="./transasia-icon-512.png"
       alt="Transasia Logo">
 
     <h2>TRANSASIA VALUATION STATUS</h2>
 
-   
-    <a href="https://script.google.com/macros/s/AKfycbzG9f7y3zezT4nezNxCxk7Q7XtUz6Cps6c7B17H1L2AC8AoeXD092LaTOoyN486G4YG/exec">
-      ENTER
-    </a>
-
+    <div id="googleSignIn"></div>
+    <div id="message">Please sign in with Google</div>
   </div>
 
   <script>
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register(
-          "./service-worker.js"
-        );
-      });
-    }
-  </script>
+    const CLIENT_ID =
+      "987368239981-1vermuon1m476s75233kl1cn4uoheulj.apps.googleusercontent.com";
 
+    const APP_URL =
+      "https://script.google.com/macros/s/AKfycbzG9f7y3zezT4nezNxCxk7Q7XtUz6Cps6c7B17H1L2AC8AoeXD092LaTOoyN486G4YG/exec";
+
+    function handleGoogleLogin(response) {
+      document.getElementById("message").textContent =
+        "Opening Transasia Valuation...";
+
+      window.location.replace(
+        APP_URL + "#id_token=" +
+        encodeURIComponent(response.credential)
+      );
+    }
+
+    window.onload = function() {
+      google.accounts.id.initialize({
+        client_id: CLIENT_ID,
+        callback: handleGoogleLogin
+      });
+
+      google.accounts.id.renderButton(
+        document.getElementById("googleSignIn"),
+        {
+          theme: "outline",
+          size: "large",
+          text: "signin_with",
+          shape: "rectangular",
+          width: 250
+        }
+      );
+    };
+  </script>
 </body>
 </html>
