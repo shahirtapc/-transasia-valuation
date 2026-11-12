@@ -1,0 +1,20 @@
+
+{
+  "name": "Transasia Valuation",
+  "short_name": "Transasia",
+  "description": "Transasia Property Consultancy Staff Portal",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F7F5F5",
+  "theme_color": "#80004B",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./transasia-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
