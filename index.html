@@ -5,43 +5,76 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#80004B">
+
   <title>Transasia Valuation</title>
-  <link rel="manifest" href="manifest.json">
+
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./transasia-icon-512.png">
+
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f7f5f5;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      background: #F7F5F5;
+      font-family: Arial, sans-serif;
       text-align: center;
     }
+
     .container {
       padding: 30px;
     }
-    h1 { color: #80004B; }
-    p { color: #666; }
+
+    .logo {
+      width: 160px;
+      height: 160px;
+      border-radius: 30px;
+    }
+
+    h2 {
+      color: #80004B;
+    }
+
     a {
       display: inline-block;
       background: #80004B;
       color: white;
-      padding: 16px 35px;
+      padding: 16px 30px;
       border-radius: 10px;
       text-decoration: none;
       font-weight: bold;
     }
   </style>
 </head>
+
 <body>
   <div class="container">
-    <h1>TRANSASIA</h1>
-    <h2>VALUATION SYSTEM</h2>
+
+    <img class="logo"
+      src="./transasia-icon-512.png"
+      alt="Transasia Logo">
+
+    <h2>TRANSASIA VALUATION</h2>
+
     <p>Property Consultancy Staff Portal</p>
+
     <a href="https://script.google.com/macros/s/AKfycbzG9f7y3zezT4nezNxCxk7Q7XtUz6Cps6c7B17H1L2AC8AoeXD092LaTOoyN486G4YG/exec">
       LOGIN WITH GOOGLE
     </a>
+
   </div>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register(
+          "./service-worker.js"
+        );
+      });
+    }
+  </script>
+
 </body>
 </html>
