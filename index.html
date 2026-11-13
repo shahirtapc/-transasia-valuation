@@ -56,14 +56,23 @@
       "https://script.google.com/macros/s/AKfycbzG9f7y3zezT4nezNxCxk7Q7XtUz6Cps6c7B17H1L2AC8AoeXD092LaTOoyN486G4YG/exec";
 
     function handleGoogleLogin(response) {
-      document.getElementById("message").textContent =
-        "Opening Transasia Valuation...";
+  document.getElementById("message").textContent =
+    "Verifying Google account...";
 
-      window.location.replace(
-        APP_URL + "#id_token=" +
-        encodeURIComponent(response.credential)
-      );
-    }
+  const form = document.createElement("form");
+  form.method = "POST";
+  form.action = APP_URL;
+  form.target = "_top";
+
+  const tokenInput = document.createElement("input");
+  tokenInput.type = "hidden";
+  tokenInput.name = "id_token";
+  tokenInput.value = response.credential;
+
+  form.appendChild(tokenInput);
+  document.body.appendChild(form);
+  form.submit();
+}
 
     window.onload = function() {
       google.accounts.id.initialize({
